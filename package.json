@@ -1,0 +1,10 @@
+{
+  "name": "crypto-presentation",
+  "version": "0.0.1",
+  "dependencies": {
+    "reveal": "0.0.4",
+    "enigma": "1.1.2"
+  },
+  "author": "Russ Taylor <russ@russt.me>",
+  "license": "MIT"
+}
