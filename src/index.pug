@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+
+    link(rel="stylesheet", href="../node_modules/reveal.js/css/reveal.css")
+    link(rel="stylesheet", href="../node_modules/reveal.js/css/theme/black.css")
+
+    title The History of Cryptography
+
+  body
+    .reveal
+      .slides
+        section
+          h2 The History of
+          h1 Cryptography
+        section
+          p cryp·tog·ra·phy
+          blockquote
+            | the enciphering and deciphering of messages in secret code or cipher;
+            | also: the computerized encoding and decoding of information
+        section
+          section
+            h1 Scytales
+            img.plain(data-src="img/scytale.png" style="background: none;")
+          section
+            p
+              | Just a stick of a specific diameter, with a piece of paper or leather wrapped
+              | around them. The 'key' is the diameter of the cylinder.
+          section
+            h3 Scytale Demo
+            p
+              label(for="scytale-input") Input
+              input#text(name="scytale-input")
+            p
+              label(for="scytale-key") Key (diameter, in number of characters)
+              input#text(name="scytale-key")
+            p
+              label(for="scytale-output") Output
+              input#text(name="scytale-output")
+          section
+            p
+              | Naturally, easy to break. (About 4 bits of entropy)
+        section
+          section
+            h1 Caesar Cipher
+            img.plain(data-src="img/caesar-cipher.svg" style="background: none;")
+          section
+            h3 Caesar Cipher Demo
+            input#text(name="caesar-input")
+            input#text(name="caesar-key")
+            input#text(name="caesar-output")
+          section
+            p
+              | About 4.6 bits of entropy. Once again, easy to break.
+        section
+          h1 Substitution Ciphers
+        section
+          h2 Further Reading
+          p The Code Book (Singh, Simon) ISBN-10: 0385495323
+
+
+    script(src="index.js")
