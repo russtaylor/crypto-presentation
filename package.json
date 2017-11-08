@@ -4,7 +4,8 @@
   "dependencies": {
     "enigma": "1.1.2",
     "reveal.js": "3.5.0",
-    "lodash": "4.17.4"
+    "lodash": "4.17.4",
+    "node-sass": "4.6.0"
   },
   "devDependencies": {
     "browserify": "14.5.0",
@@ -12,14 +13,17 @@
     "minifyify": "7.3.5",
     "pug": "2.0.0-rc.4",
     "pug-cli": "1.0.0-alpha6",
-    "jest": "21.2.1"
+    "jest": "21.2.1",
+    "nodemon": "1.12.1"
   },
   "scripts": {
     "build:js": "browserify src/js/index.js > dist/index.js",
     "build:pug": "pug src/index.pug --out dist",
     "build:copy": "rm -rf dist/img && cp -R src/img dist/img",
-    "build": "npm run build:js && npm run build:pug && npm run build:copy",
-    "test": "jest"
+    "build:css": "node-sass src/scss/index.scss dist/css/index.css",
+    "build": "npm run build:js && npm run build:pug && npm run build:copy && npm run build:css",
+    "test": "jest",
+    "watch": "nodemon --config nodemon-config.json"
   },
   "author": "Russ Taylor <russ@russt.me>",
   "license": "MIT"

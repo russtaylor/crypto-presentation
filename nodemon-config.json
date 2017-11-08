@@ -1,0 +1,6 @@
+{
+  "verbose": true,
+  "ignore": ["dist"],
+  "exec": "npm run build",
+  "ext": "pug,scss,js,json"
+}

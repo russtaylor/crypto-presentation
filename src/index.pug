@@ -1,10 +1,9 @@
 doctype html
-html(lang="en")
+html(lang='en')
   head
-    meta(charset="utf-8")
+    meta(charset='utf-8')
 
-    link(rel="stylesheet", href="../node_modules/reveal.js/css/reveal.css")
-    link(rel="stylesheet", href="../node_modules/reveal.js/css/theme/black.css")
+    link(rel='stylesheet', href='css/index.css')
 
     title The History of Cryptography
 
@@ -21,43 +20,248 @@ html(lang="en")
             | also: the computerized encoding and decoding of information
         section
           section
-            h1 Scytales
-            img.plain(data-src="img/scytale.png" style="background: none;")
+            h2 Scytales
+            h3 AKA 'Rail Fences'
+            img.plain.stretch(data-src='img/scytale.png' style='background: none;')
           section
             p
               | Just a stick of a specific diameter, with a piece of paper or leather wrapped
-              | around them. The 'key' is the diameter of the cylinder.
+              | around it. The 'key' is the diameter of the cylinder.
           section
-            h3 Scytale Demo
+            h3 Demo
+            div.demo
+              label(for='scytale-input') Input
+              input#scytale-input(type='text', name='scytale-input' value="It's a trap!")
+            div.demo
+              label(for='scytale-key') Diameter
+              input#scytale-key(type='number', name="scytale-key" value="5")
+            div.buttons
+              input#scytale-encipher(type='button', value='Encipher')
+              input#scytale-decipher(type='button', value='Decipher')
+            div.demo
+              label(for='scytale-output') Output
+              input#scytale-output(type='text', name='scytale-output')
             p
-              label(for="scytale-input") Input
-              input#text(name="scytale-input")
-            p
-              label(for="scytale-key") Key (diameter, in number of characters)
-              input#text(name="scytale-key")
-            p
-              label(for="scytale-output") Output
-              input#text(name="scytale-output")
           section
+            h3 Scytale Entropy
+            table
+              thead
+                tr
+                  th Combinations
+                  th Bits
+              tbody
+                tr
+                  td 20-ish?
+                  td ~4
             p
-              | Naturally, easy to break. (About 4 bits of entropy)
+              | Easy to break by hand.
         section
           section
-            h1 Caesar Cipher
-            img.plain(data-src="img/caesar-cipher.svg" style="background: none;")
+            h2 Caesar Cipher
+            img.plain(data-src='img/caesar-cipher.svg' style='background: none;')
           section
-            h3 Caesar Cipher Demo
-            input#text(name="caesar-input")
-            input#text(name="caesar-key")
-            input#text(name="caesar-output")
+            h3 Demo
+            div.demo
+              label(for='caesar-input') Input
+              input#caesar-input(type='text', name='caesar-input' value='So this is how liberty dies...')
+            div.demo
+              label(for='caesar-key') Shift Size
+              input#caesar-key(type='number', name="caesar-key" value="5")
+            div.buttons
+              input#caesar-encipher(type='button', value='Encipher')
+              input#caesar-decipher(type='button', value='Decipher')
+            div.demo
+              label(for='caesar-output') Output
+              input#caesar-output(type='text', name='caesar-output')
           section
+            h3 Caesar Cipher Entropy
+            table
+              thead
+                tr
+                  th Combinations
+                  th Bits
+              tbody
+                tr
+                  td 25
+                  td 4.64
             p
-              | About 4.6 bits of entropy. Once again, easy to break.
+              | Once again, easy to break.
         section
+          img(data-src='img/substitution.gif')
           h1 Substitution Ciphers
         section
+          section
+            img.plain.stretch(data-src='img/monoalphabetic.svg' style='background: none;')
+            h2 Monoalphabetic Substitution Cipher
+          section
+            p The 'key' is a jumbled-up alphabet
+            p Letters are substituted for their entry in the key
+          section
+            h3 Demo
+            div.demo
+              label(for='monoalphabetic-input') Input
+              input#monoalphabetic-input(type='text', name='monoalphabetic-input' value="Don't get cocky, kid.")
+            div.demo
+              label(for='monoalphabetic-key') Alphabet
+              input#monoalphabetic-key(type='text', name="monoalphabetic-key" value="PHYEUFSMQNJVKOWCTDABGIXRZL")
+            div.buttons
+              input#monoalphabetic-encipher(type='button', value='Encipher')
+              input#monoalphabetic-decipher(type='button', value='Decipher')
+            div.demo
+              label(for='monoalphabetic-output') Output
+              input#monoalphabetic-output(type='text', name='monoalphabetic-output')
+          section
+            h3 Entropy
+            table
+              thead
+                tr
+                  th Combinations
+                  th Bits
+              tbody
+                tr
+                  td 403,291,461,126,605,635,584,000,000
+                  td 88.38
+            p Not <em>quite</em> so easy to break.
+          section
+            h3 Unbreakable?
+            p It was thought unbreakable for hundreds of years.
+            p But it actually has one big weakness.
+          section
+            h4 Frequency Analysis
+            img.plain.stretch(data-src='img/english-letter-frequency.png')
+          section
+            ul
+              li Identify which letters occur most often
+              li Match them with the English letters that happen most often
+              li Mix them around if things don't quite make sense
+              li Luckily (for codebreakers), making partial progress is still beneficial
+          section
+            img.stretch(data-src='img/mary-queen-of-scots.jpg')
+            p Frequency analysis is what got Mary Queen of Scots beheaded.
+        section
+          section
+            img.plain.stretch(data-src='img/vigenere.png' style='background:none;')
+            h2 Vigenère Cipher
+          section
+            img.stretch(data-src='img/vigenere-square.png')
+            p Essentially, it's a 'shifting' Caesar Cipher, with an alphabetic key.
+          section
+            h3 Demo
+            div.demo
+              label(for='vigenere-input') Input
+              input#vigenere-input(type='text', name='vigenere-input' value="Thank you for helping us help you help us all.")
+            div.demo
+              label(for='vigenere-key') Key
+              input#vigenere-key(type='text', name="vigenere-key" value="GLADOS")
+            div.buttons
+              input#vigenere-encipher(type='button', value='Encipher')
+              input#vigenere-decipher(type='button', value='Decipher')
+            div.demo
+              label(for='vigenere-output') Output
+              input#vigenere-output(type='text', name='vigenere-output')
+          section
+            h3 Entropy
+            table
+              thead
+                tr
+                  th Key Length
+                  th Combinations
+                  th Bits
+              tbody
+                tr
+                  td 10
+                  td 141,167,095,653,376
+                  td 47
+                tr
+                  td 20
+                  td 19,928,148,895,209,409,152,340,197,376
+                  td 94
+            ul
+              li Strength depends on key length
+              li Not susceptible to frequency analysis
+          section
+            img.stretch(data-src='img/charles-babbage.jpg')
+            h4 Broken by
+            h3 Charles Babbage
+          section
+            ul
+              li Broke the Vigenère Cipher in ~1845
+              li Kept a military secret until 1854
+              li Approach picked out parts of text and tried converting them to common words
+              li If the resulting 'key' started to make sense, you were on to something
+        section
+          section
+            h2 Variants of Substitution Ciphers
+          section
+            h3 Homophonic Substitution
+            img.plain.stretch(data-src='img/homophonic.svg' style="background: none;")
+            ul
+              li Maps more common letters to a proportionate number of symbols
+              li Still can be deciphered by analyzing relations between symbols
+          section
+            h3 The Zimmermann Telegram
+            img.stretch(data-src='img/zimmermann-telegram.jpg')
+            ul
+              li Used 5-digit numbers that represented words
+              li Deciphered using intercepted codebooks
+              li British came up with cover story to explain how they got it
+          section
+            h3
+        section
+          section
+            img.stretch(data-src='img/enigma-machine.jpg')
+            h2 The Enigma
+          section
+            img.stretch(data-src='img/enigma-diagram.png')
+            ul
+              li 3 (later 5) interchangeable rotors that transformed letters
+              li Reflector that sent signals back through rotors
+              li Plugboard that was reconfigured to swap certain letters
+              li Rotors changed on every keystroke
+          section
+            h3 Demo
+          section
+            h3 Key (JSON Representation)
+          section
+            h3 Entropy
+            table
+              thead
+                tr
+                  th Combinations
+                  th Bits
+              tbody
+                tr
+                  td 15,896,255,521,782,636,000
+                  td 63.79
+        section
+          h1 Modern Cryptography
+        section
+          section
+            h2 Asymmetric Cryptography
+
+        section
+          section
+            h2 AES 256
+          section
+            h3 Entropy
+            table
+              thead
+                tr
+                  th Combinations
+                  th Bits
+              tbody
+                tr
+                  td 1.1579208✕10<sup>77</sup> (115 quattuorvigintillion)
+                  td 256
+            p At current tech levels, using the fastest supercomputer, it'd take about 1✕10<sup>18</sup> years to break.
+        section
+          h1 Quantum Cryptography
+
+        section
           h2 Further Reading
-          p The Code Book (Singh, Simon) ISBN-10: 0385495323
+          p <a href='http://a.co/7wh3D1e'>The Code Book (Simon Singh)</a>
+          p <a href='http://simonsingh.net'>simonsingh.net</a>
+          p <a href='http://www.eng.utah.edu/~nmcdonal/Tutorials/EncryptionResearchReview.pdf'>Past, Present, and Future...</a>
 
 
     script(src="index.js")
