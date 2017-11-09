@@ -17,6 +17,14 @@ let encryptionMap = {
   "vigenere": {
     "encipher-function": Crypto.vigenereEncipher,
     "decipher-function": Crypto.vigenereDecipher
+  },
+  "enigma": {
+    "encipher-function": Crypto.enigmaEncode,
+    "decipher-function": Crypto.enigmaEncode
+  },
+  "aes": {
+    "encipher-function": Crypto.aesEncode,
+    "decipher-function": Crypto.aesDecode
   }
 };
 

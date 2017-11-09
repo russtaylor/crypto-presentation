@@ -1,4 +1,6 @@
 let _ = require('lodash');
+let Enigma = require('enigma-js');
+let aes = require('aes-js');
 
 const uppercaseLowerBound = 65;
 const uppercaseUpperBound = 90;
@@ -178,8 +180,51 @@ let Crypto = {
       }
     }
     return output;
-  }
+  },
 
+  /**
+   * Enigma (external library)
+   */
+  enigmaEncode: function(string, rawKey) {
+    let enigmaConfig = JSON.parse(rawKey);
+    Enigma.load(enigmaConfig);
+    return Enigma.process(string.toUpperCase());
+  },
+
+  /**
+   * AES (external library)
+   */
+  aesEncode: function(string, hexKey) {
+    let key = module.exports.hexToBytes(hexKey);
+
+    let stringBytes = aes.utils.utf8.toBytes(string);
+
+    let aesCtr = new aes.ModeOfOperation.ctr(key, new aes.Counter(5));
+    let encryptedBytes = aesCtr.encrypt(stringBytes);
+
+    let encryptedHex = aes.utils.hex.fromBytes(encryptedBytes);
+    return encryptedHex;
+  },
+
+  aesDecode: function(string, hexKey) {
+    let key = module.exports.hexToBytes(hexKey);
+
+    let stringBytes = aes.utils.hex.toBytes(string);
+
+    let aesCtr = new aes.ModeOfOperation.ctr(key, new aes.Counter(5));
+    let encryptedBytes = aesCtr.decrypt(stringBytes);
+
+    let encryptedHex = aes.utils.utf8.fromBytes(encryptedBytes);
+    return encryptedHex;
+  },
+
+  hexToBytes: function(hexString) {
+    let bytes = [];
+    for (i = 0; i < hexString.length; i += 2) {
+      bytes.push(parseInt(hexString.substr(i, 2), 16));
+    }
+    return bytes;
+  }
 };
 
 module.exports = Crypto;

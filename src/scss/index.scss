@@ -1,6 +1,10 @@
 @import '../../node_modules/reveal.js/css/reveal.css';
 @import '../../node_modules/reveal.js/css/theme/black.css';
 
+.reveal sup {
+    font-size: 0.5em !important;
+}
+
 .demo {
     height: 1.7em;
     margin: 0.5em 0 !important;
@@ -19,6 +23,13 @@
         width: 80%;
         font-size: 100%;
         line-height: 1.5em;
+    }
+
+    textarea {
+        font-family: 'Source Code Pro', Consolas, Menlo;
+        width: 80%;
+        height: 20em;
+        font-size: 0.5em;
     }
 }
 

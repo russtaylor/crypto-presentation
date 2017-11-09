@@ -86,3 +86,21 @@ test('Can decipher with Vigènere', () => {
   expect(Crypto.vigenereDecipher('J gxp b herwm lsc crkevxbsz.', 'bagels'))
     .toEqual('I ate a bagel for breakfast.');
 });
+
+test('Can encipher/decipher with Enigma', () => {
+  let enigmaSettings = '{"rotors":[{"type":"III","ring":0,"position":"X"},{"type":"II","ring":0,"position":"R"},{"type":"I","ring":0,"position":"D"}],"plugboard":["AB","CD","EF","GH"],"reflector":"B","spacing":4}'
+  expect(Crypto.enigmaEncode('HELLOWORLD', enigmaSettings)).toBe('OXUW QMJI RC');
+  expect(Crypto.enigmaEncode('wedowhatwemustbecausewecan', enigmaSettings))
+    .toBe('AXCJ YFBN QIBK MVJQ NPVD KCTG IL');
+});
+
+test('Can encipher with AES', () => {
+  let key = '2FAE57CC2F9692AAF683A54F52585B6F';
+  expect(Crypto.aesEncode('Hello!', key)).toBe('0beaee3e87cf');
+});
+
+test('Can encipher with AES', () => {
+  let key = '2FAE57CC2F9692AAF683A54F52585B6F';
+  expect(Crypto.aesEncode('0beaee3e87cf', key)).toBe('Hello!');
+});
+
